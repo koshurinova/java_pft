@@ -1,23 +1,17 @@
 public class MyFirstPr {
 
     public static void main(String[] args) {
-        hello("user");
-        hello("world");
 
-        Square s=new Square(5);
-        System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
+            Point one = new Point(3,2);
+            Point two = new Point (5,7);
+            System.out.println("Расстояние между двумя точками с использованием функции = " + distance(one,two));
+            System.out.println("Расстояние между двумя точками с использованием метода = " + one.distance2(two));
+                }
 
-        Rectangle r=new Rectangle(7,8);
-        System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b+ " = " + r.area());
-    }
-
-    public static void hello(String slovo) {
-        System.out.println("Hello, " + slovo + "!");
-    }
-
-
-
-
+    public static double distance(Point p1, Point p2) {
+        return Math.sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y));
 }
+}
+
 
 
