@@ -1,9 +1,11 @@
+package ru.stqa.pft.sandbox;
+
 public class MyFirstPr {
 
     public static void main(String[] args) {
 
             Point one = new Point(3,2);
-            Point two = new Point (5,7);
+            Point two = new Point(5,7);
             System.out.println("Расстояние между двумя точками с использованием функции = " + distance(one,two));
             System.out.println("Расстояние между двумя точками с использованием метода = " + one.distance2(two));
                 }
