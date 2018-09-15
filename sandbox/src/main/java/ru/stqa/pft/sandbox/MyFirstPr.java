@@ -6,7 +6,8 @@ public class MyFirstPr {
 
             Point one = new Point(3,2);
             Point two = new Point(5,7);
-            System.out.println("Расстояние между двумя точками с использованием функции = " + distance(one,two));
+            System.out.println("Расстояние между точкой p1 с координатами (" +one.x+", "+one.y+") и точкой p2 с координатами " +
+                    "(" +two.x+", "+two.y+")" +" с использованием функции = " + distance(one,two));
             System.out.println("Расстояние между двумя точками с использованием метода = " + one.distance2(two));
                 }
 
