@@ -26,14 +26,14 @@ public class ContactCreationTests {
     private void login(String username, String password) {
         wd.findElement(By.name("user")).sendKeys(username);
         wd.findElement(By.name("pass")).sendKeys(password);
-        initContactCreation("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]");
+        initContactCreation("//input[@value='Login']");
     }
 
     @Test
     public void testContactCreation() throws Exception {
         goToAddContact("add new");
         fillContactForm(new ContactData("Иван", "Иванов", "123456", "1@test.ru"));
-        initContactCreation("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]");
+        initContactCreation("(//input[@name='submit'])[2]");
         viewPageContact("home");
 
     }
