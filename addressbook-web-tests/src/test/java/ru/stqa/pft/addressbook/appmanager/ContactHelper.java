@@ -8,23 +8,23 @@ public class ContactHelper extends HelperBase{
         super(wd);
     }
 
-        public void goToGroupPage() {
+    public void goToGroupPage() {
         click(By.linkText("add new"));
     }
 
     public void viewPageContact(String home) {
-        wd.findElement(By.linkText(home)).click();
+        click(By.linkText("home"));
     }
 
     public void initContactCreation(String s) {
-        wd.findElement(By.xpath(s)).click();
+        click(By.xpath(s));
     }
 
     public void fillContactForm(ContactData contactData) {
-        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
-        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
-        wd.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
-        wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+        type(By.name("firstname"),contactData.getFirstname());
+        type(By.name("lastname"),contactData.getLastname());
+        type(By.name("mobile"),contactData.getMobile());
+        type(By.name("email"),contactData.getEmail());
     }
 
     protected void goToAddContact(String s) {
