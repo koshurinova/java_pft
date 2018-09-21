@@ -8,7 +8,7 @@ public class ContactHelper extends HelperBase{
         super(wd);
     }
 
-    public void goToGroupPage() {
+    public void goToContactPage() {
         click(By.linkText("add new"));
     }
 
@@ -29,5 +29,17 @@ public class ContactHelper extends HelperBase{
 
     protected void goToAddContact(String s) {
         viewPageContact(s);
+    }
+
+    public void selectContact() {
+       click(By.name("selected[]"));
+    }
+
+    public void deleteSelectedContact() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
+
+    public void acceptDeletionContact() {
+        wd.switchTo().alert().accept();
     }
 }
