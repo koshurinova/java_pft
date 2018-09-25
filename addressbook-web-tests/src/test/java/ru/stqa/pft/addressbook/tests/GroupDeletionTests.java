@@ -7,7 +7,7 @@ public class GroupDeletionTests extends TestBase {
 
   @Test
   public void testGroupDeletion() {
-    app.getGroupHelper().goToGroupPage();
+    app.getNavigationHelper().goToGroupPage();
     app.getGroupHelper().selectGroup(By.name("selected[]"));
     app.getGroupHelper().deleteSelectedGroup(By.xpath("(//input[@name='delete'])[2]"));
     app.getNavigationHelper().returnGroupPage();
