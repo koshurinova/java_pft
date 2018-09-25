@@ -11,8 +11,9 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() throws Exception {
-        app.getContactHelper().viewPageContact("home");;
-        app.getContactHelper().fillContactForm(new ContactData("Иван", "Иванов", "123456", "1@test.ru"));
+        app.getContactHelper().viewPageContact("home");
+        app.getContactHelper().addContactPage();
+        app.getContactHelper().fillContactForm(new ContactData("Иван", "Иванов", "123456", "1@test.ru", "test1"), true);
         app.getContactHelper().initContactCreation("(//input[@name='submit'])[2]");
         app.getContactHelper().viewPageContact("home");
     }
