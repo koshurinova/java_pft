@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactHelper extends HelperBase {
     public ContactHelper(WebDriver wd) {
@@ -73,7 +74,7 @@ public class ContactHelper extends HelperBase {
         viewPageContact("home");
     }
 
-    public boolean isThereAGroup() {
+    public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
 }
