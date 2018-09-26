@@ -29,16 +29,16 @@ public class GroupHelper extends HelperBase {
         click(By.name(s));
     }
 
-    public void deleteSelectedGroup(By xpath) {
-        click(xpath);
+    public void deleteSelectedGroup() {
+        click(By.xpath("(//input[@name='delete'])[2]"));
     }
 
     public void returnGroupPage() {
         click(By.linkText("group page"));
     }
 
-    public void selectGroup(By name) {
-        click(name);
+    public void selectGroup() {
+        click(By.name("selected[]"));
     }
 
     public void initGroupModification() {

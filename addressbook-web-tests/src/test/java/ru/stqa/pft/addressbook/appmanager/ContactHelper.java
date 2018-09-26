@@ -16,7 +16,7 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void viewPageContact(String home) {
+    public void viewPageContact() {
         click(By.linkText("home"));
     }
 
@@ -39,9 +39,9 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    protected void goToAddContact(String s) {
-        viewPageContact(s);
-    }
+//    protected void goToAddContact(String s) {
+//        viewPageContact(s);
+//    }
 
     public void selectContact() {
         click(By.name("selected[]"));
@@ -71,7 +71,7 @@ public class ContactHelper extends HelperBase {
         addContactPage();
         fillContactForm(contact, true);
         initContactCreation("(//input[@name='submit'])[2]");;
-        viewPageContact("home");
+        viewPageContact();
     }
 
     public boolean isThereAContact() {
