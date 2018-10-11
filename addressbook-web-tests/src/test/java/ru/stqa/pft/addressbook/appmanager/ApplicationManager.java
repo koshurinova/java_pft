@@ -55,11 +55,11 @@ public class ApplicationManager {
 
 
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {  //помощник по работе с группами
         return groupHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
     public ContactHelper getContactHelper() {
