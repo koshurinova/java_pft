@@ -4,8 +4,42 @@ public class ContactData {
     private int id=Integer.MAX_VALUE;
     private String firstname;
     private String lastname;
-    private String mobile;
+    private String mobilePhone;
+    private String homePhone;
+    private String workPhone;
     private String email;
+    private String email2;
+    private String email3;
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    private String allPhones;
+
+
+
+    private String allEmails;
+    private String address;
+
+
+
     private String group;
 
     public int getId() {
@@ -20,8 +54,15 @@ public class ContactData {
         return lastname;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
     }
 
     public String getEmail() {
@@ -49,11 +90,19 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withMobile(String mobile) {
-        this.mobile = mobile;
+    public ContactData withMobilePhone(String mobile) {
+        this.mobilePhone = mobile;
         return this;
     }
 
+    public ContactData withHomePhone(String home) {
+        this.homePhone = home;
+        return this;
+    }
+    public ContactData withWorkPhone(String work) {
+        this.workPhone = work;
+        return this;
+    }
     public ContactData withEmail(String email) {
         this.email = email;
         return this;
@@ -62,7 +111,32 @@ public class ContactData {
     public ContactData withGroup(String group) {
         this.group = group;
         return this;
-     }
+    }
+
+    public ContactData wihtAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
 
     @Override
     public String toString() {
@@ -90,4 +164,7 @@ public class ContactData {
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
+
+
+
 }

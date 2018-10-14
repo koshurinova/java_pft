@@ -17,13 +17,19 @@ public class GroupCreationTests extends TestBase{
     Groups before=app.group().all();
     GroupData group = new GroupData().withName("test3");
     app.group().create(group);
+    assertThat(app.group().count(),equalTo(before.size()+1));//проверка кол-ва групп до и после
     Groups after=app.group().all();
-    assertThat(after.size(),equalTo(before.size()+1));
-
-//    group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());  //присваиваем идентификатор добавленной группе/
-    // идент: берем коллекцию с уже известными идент// , превращаем ее в поток идент-в
-    // / В кач-ве параметра группа, в рез-те id группы/берем макс/преобразуем в целое число
     assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
   }
 
+  @Test
+  public void testBadGroupCreation() throws Exception { //проверка с именем групп сожержащей '
+    app.goTo().groupPage();
+    Groups before=app.group().all();
+    GroupData group = new GroupData().withName("test3'");
+    app.group().create(group);
+    assertThat(app.group().count(),equalTo(before.size()));
+    Groups after=app.group().all();
+    assertThat(after, equalTo(before));
+  }
 }
