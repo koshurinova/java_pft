@@ -33,9 +33,6 @@ public class GroupModificationTests extends TestBase {
         app.group().modify(group); //метод для модификации групп
         Groups after=app.group().all();
         assertThat(after.size(), equalTo(before.size()));
-
-        before.remove(modifiedGroup);
-        before.add(group);
        assertThat(after, equalTo(before.withOut(modifiedGroup).withAdded(group)));
     }
 

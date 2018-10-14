@@ -23,7 +23,7 @@ public class GroupCreationTests extends TestBase{
 //    group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());  //присваиваем идентификатор добавленной группе/
     // идент: берем коллекцию с уже известными идент// , превращаем ее в поток идент-в
     // / В кач-ве параметра группа, в рез-те id группы/берем макс/преобразуем в целое число
-    assertThat(after, equalTo(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt())));
+    assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
   }
 
 }

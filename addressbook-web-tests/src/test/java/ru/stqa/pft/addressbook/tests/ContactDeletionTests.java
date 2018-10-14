@@ -1,32 +1,37 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDeletionTests extends TestBase{
+
+    @BeforeMethod
+    public void ensurePreconditions (){
+        app.contact().contactPage();
+        if (app.contact().all().size()==0){
+            app.contact().create(new ContactData().withFirstname("Иван").withLastname("Иванов").withMobile("123456").withEmail("1@test.ru").withGroup("test5"));
+        }
+    }
+
     @Test
     public void testContactDeletion(){
-        app.getContactHelper().viewPageContact();
-        if (! app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("Иван", "Иванов", "123456", "1@test.ru", "test5"));
-        }
-
-        List<ContactData> before=app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact();
-        app.getContactHelper().deleteSelectedContact();
-        app.getContactHelper().acceptDeletionContact();
-        app.getContactHelper().viewPageContact();
-        List<ContactData> after=app.getContactHelper().getContactList();
-        Assert.assertEquals(after.size(), before.size()-1);
-        before.remove(before.size()-1);
-        Assert.assertEquals(after, before) ;
+        Contacts before=app.contact().all();
+        ContactData deletedContact=before.iterator().next();
+        app.contact().delete(deletedContact);
+        Contacts after=app.contact().all();
+        assertThat(after.size(), equalTo(before.size()-1));
+        assertThat(after, equalTo(before.withOut(deletedContact))) ;
 
 
     }
+
+
 }
