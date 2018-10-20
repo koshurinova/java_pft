@@ -1,12 +1,19 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.util.Objects;
-
+@XStreamAlias("group")
 public class GroupData {
-
-    private String name;
+  @XStreamOmitField //для исключения из xml
     private int id = Integer.MAX_VALUE;
+    @Expose //выводить в json
+    private String name;
+    @Expose
     private String header;
+    @Expose
     private String footer;
 
 
