@@ -64,6 +64,7 @@ public class ContactDataGenerator {
             contacts.add(new ContactData().withFirstname(String.format("FirstName%s", i))
                     .withLastname(String.format("LastName%s", i))
                     .withMobilePhone(String.format("12345%s", i))
+                    .withGroup("test1")
                     .withAddress(String.format("Adress%s", i)));
         }
         return contacts;

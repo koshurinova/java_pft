@@ -3,18 +3,21 @@
     "firstname": "FirstName0",
     "lastname": "LastName0",
     "mobilePhone": "123450",
+    "group": "test1",
     "address": "Adress0"
   },
   {
     "firstname": "FirstName1",
     "lastname": "LastName1",
     "mobilePhone": "123451",
+    "group": "test1",
     "address": "Adress1"
   },
   {
     "firstname": "FirstName2",
     "lastname": "LastName2",
     "mobilePhone": "123452",
+    "group": "test1",
     "address": "Adress2"
   }
 ]
