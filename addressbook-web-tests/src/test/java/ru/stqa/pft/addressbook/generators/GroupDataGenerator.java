@@ -60,9 +60,9 @@ public class GroupDataGenerator {
     private void saveAsJson(List<GroupData> groups, File file) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         String json = gson.toJson(groups);
-        Writer writer=new FileWriter(file); //открываем файл на запись
-        writer.write(json);
-        writer.close();
+        try (Writer writer=new FileWriter(file); ){ //открываем файл на запись
+             writer.write(json); //записываем и автоматически закрываем
+        }
 
     }
 
