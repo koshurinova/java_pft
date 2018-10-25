@@ -15,9 +15,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupModificationTests extends TestBase {
 
     @BeforeMethod //предусловия к выполнению тестов
-    public void ensurePreconditions () { //проверка наличия хотя бы одной группы
-        app.goTo().groupPage();
-        if (app.group().all().size() ==0){
+    public void ensurePreconditions () {
+        //проверка наличия хотя бы одной группы на UI
+//        app.goTo().groupPage();
+//        if (app.group().all().size() ==0){
+//            app.group().create(new GroupData().withName("test4"));
+//        }
+//    }
+
+        //проверка наличия хотя бы одной группы через БД
+        if (app.db().groups().size() ==0){
+            app.goTo().groupPage();
             app.group().create(new GroupData().withName("test4"));
         }
     }
@@ -25,7 +33,8 @@ public class GroupModificationTests extends TestBase {
     @Test
     public void testGroupModification(){
 
-        Groups before=app.group().all();
+//        Groups before=app.group().all(); //UI
+        Groups before =app.db().groups();
         GroupData modifiedGroup=before.iterator().next(); //возвращаем любой элемент множества
 //        int index = before.size()-1; //индекс выделяемой группы
         GroupData group = new GroupData()
@@ -33,7 +42,8 @@ public class GroupModificationTests extends TestBase {
         app.group().modify(group); //метод для модификации групп
         //проверка кол-ва групп до и после
         assertThat(app.group().count(),equalTo(before.size()));
-        Groups after=app.group().all();
+//        Groups after=app.group().all(); //UI
+        Groups after=app.db().groups();
        assertThat(after, equalTo(before.withOut(modifiedGroup).withAdded(group)));
     }
 
