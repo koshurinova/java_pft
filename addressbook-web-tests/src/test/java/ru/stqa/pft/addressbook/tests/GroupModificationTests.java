@@ -39,6 +39,7 @@ public class GroupModificationTests extends TestBase {
 //        int index = before.size()-1; //индекс выделяемой группы
         GroupData group = new GroupData()
                 .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");
+        app.goTo().groupPage();
         app.group().modify(group); //метод для модификации групп
         //проверка кол-ва групп до и после
         assertThat(app.group().count(),equalTo(before.size()));

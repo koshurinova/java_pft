@@ -37,18 +37,29 @@ public class ContactCreationTests extends TestBase {
     }
 
     @Test (dataProvider = "validContactsFromJson")
-    public void testContactCreation(ContactData contact) throws Exception {
+    public void testContactCreationJson(ContactData contact) throws Exception {
 //        File photo=new File("src/test/resources/photo.jpg");
 //        ContactData contact = new ContactData().withFirstname("Иван").withLastname("Иванов")
 //                .withMobilePhone("123456").withEmail("1@test.ru").withGroup("test1").withPhoto(photo);
         app.contact().contactPage();
-        Contacts before=app.contact().all();
+        Contacts before=app.db().contacts();
         app.contact().create(contact);
         assertThat(app.contact().Count(),equalTo(before.size()+1));
-        Contacts after=app.contact().all();
+        Contacts after=app.db().contacts();
         assertThat(after, equalTo (before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
     }
-
+    @Test
+    public void testContactCreation() throws Exception {
+        File photo=new File("src/test/resources/photo.jpg");
+        ContactData contact = new ContactData().withFirstname("Иван").withLastname("Иванов")
+                .withMobilePhone("123456").withEmail("1@test.ru").withGroup("test1").withPhoto(photo);
+        app.contact().contactPage();
+        Contacts before=app.db().contacts();
+        app.contact().create(contact);
+        assertThat(app.contact().Count(),equalTo(before.size()+1));
+        Contacts after=app.db().contacts();
+        assertThat(after, equalTo (before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
+    }
 }
 
 
