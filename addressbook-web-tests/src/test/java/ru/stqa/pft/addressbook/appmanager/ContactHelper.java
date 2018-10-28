@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,20 +44,25 @@ public class ContactHelper extends HelperBase {
 
 
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group")))
+                        .selectByVisibleText(contactData.getGroups().iterator().next().getName());
+            }
+
+        }else {
+                Assert.assertFalse(isElementPresent(By.name("new_group")));
+            }
         }
 
 
-    }
 
 //    protected void goToAddContact(String s) {
 //        contactPage(s);
 //    }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int id) {
+        wd.findElement(By.cssSelector("input[value='" +id+ "']" )).click();
     }
 
     public void selectContactById(int id) {
@@ -66,6 +72,15 @@ public class ContactHelper extends HelperBase {
     public void deleteSelectedContact() {
         click(By.xpath("//input[@value='Delete']"));
     }
+
+    public void selectToGroup() {
+        click((By.name("to_group")));
+    }
+
+    public void addContactToGroup() {
+        click(By.name("add"));
+    }
+
 
     public void acceptDeletionContact() {
         wd.switchTo().alert().accept();
@@ -106,6 +121,23 @@ public class ContactHelper extends HelperBase {
         contactPage();
 
     }
+
+    public void contactAddToGroup(ContactData contact) {
+        selectContact(contact.getId());
+        addContactToGroup();
+
+    }
+
+    public void deleteContactFromGroup(ContactData contact, GroupData group) {
+        selectGroupList(group.getName());
+        selectContact(contact.getId());
+        click(By.name("remove"));
+    }
+
+    private void selectGroupList(String group) {
+     new Select(wd.findElement(By.name("group"))).selectByVisibleText(group);
+    }
+
 
     private Contacts contactCache = null; //кеш списка групп
 
@@ -185,4 +217,7 @@ public class ContactHelper extends HelperBase {
         return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
                 .withAddress(address);
     }
+
+
+
 }
