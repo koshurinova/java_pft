@@ -7,6 +7,8 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DeletionFromGroupTests extends TestBase{
@@ -35,12 +37,15 @@ public class DeletionFromGroupTests extends TestBase{
             app.contact().contactPage();
             app.contact().contactAddToGroup(deletedFromGroup);
         }
+        app.db().refresh(deletedFromGroup);
         int groupBefore=deletedFromGroup.getGroups().size();
         app.contact().contactPage();
         app.contact().deleteContactFromGroup(deletedFromGroup,group);
         app.db().refresh(deletedFromGroup);
         int groupAfter=deletedFromGroup.getGroups().size();
         assertThat(groupAfter, equalTo(groupBefore-1));
+        assertThat(deletedFromGroup.getGroups(), not(hasItem(group)));
+
     }
 
 }
