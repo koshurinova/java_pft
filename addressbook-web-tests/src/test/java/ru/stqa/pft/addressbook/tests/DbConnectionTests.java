@@ -14,13 +14,15 @@ public class DbConnectionTests {
 
         try {
             conn =DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook?serverTimezone=UTC&user=root&password=");
+
             // Do something with the Connection
             Statement st = conn.createStatement(); //создаем объект типа Statement
             ResultSet rs = st.executeQuery("select group_id,  group_name, group_header, group_footer from group_list");
             Groups groups = new Groups();
-            while (rs.next()){
-                           groups.add(new GroupData().withId(rs.getInt("group_id")).withName(rs.getNString("group_name")).withHeader(rs.getNString("group_header"))
-                       .withFooter(rs.getNString("group_footer")));
+            while (rs.next()) {
+                groups.add(new GroupData().withId(rs.getInt("group_id")).withName(rs.getNString("group_name")).withHeader(rs.getNString("group_header"))
+                        .withFooter(rs.getNString("group_footer")));
+
             }
             rs.close();
             st.close();
