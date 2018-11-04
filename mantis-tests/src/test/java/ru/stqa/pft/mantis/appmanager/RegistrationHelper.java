@@ -27,4 +27,6 @@ public class RegistrationHelper extends HelperBase {
         type(By.name("password_confirm"),password);
         click(By.cssSelector("input[value='Update User']"));
     }
+
+
 }
