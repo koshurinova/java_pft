@@ -8,6 +8,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,7 +22,11 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void testRegistration() throws IOException, MessagingException {
+    public void testRegistration() throws IOException, MessagingException, ServiceException {
+
+        //проверяем не заблокирован ли тест багом с ID 0000002
+        skipIfNotFixed (0000002);
+
         long now=System.currentTimeMillis();
         String user = "user"+now;
         String password = "password";

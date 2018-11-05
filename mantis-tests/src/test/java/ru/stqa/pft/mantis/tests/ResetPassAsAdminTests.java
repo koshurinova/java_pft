@@ -8,6 +8,7 @@ import ru.stqa.pft.mantis.appmanager.HttpSession;
 import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UserDate;
 
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,7 +21,10 @@ public class ResetPassAsAdminTests extends TestBase {
     }
     @Test
 
-    public void testResetPassAsAdmin() throws IOException {
+    public void testResetPassAsAdmin() throws IOException, ServiceException {
+        //проверяем не заблокирован ли тест багом с ID 0000001
+        skipIfNotFixed (0000001);
+
         //берем из БД данные юзера и админа
         int administratorId = app.db().users().stream().filter((a) -> a.getUsername().equals("administrator")).iterator().next().getId();
         UserDate user = app.db().users().stream().filter((u) -> u.getId() != administratorId).iterator().next();

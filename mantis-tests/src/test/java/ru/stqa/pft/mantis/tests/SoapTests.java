@@ -1,7 +1,5 @@
 package ru.stqa.pft.mantis.tests;
 
-import org.apache.http.util.Asserts;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.mantis.model.Issue;
 import ru.stqa.pft.mantis.model.Project;
@@ -15,8 +13,11 @@ import static org.testng.Assert.assertEquals;
 
 public class SoapTests extends TestBase{
 
-    @Test (enabled = false)
+    @Test ()
+
     public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
+        //проверяем не заблокирован ли тест багом с ID 0000003
+        skipIfNotFixed (0000003);
         Set<Project> projects = app.soap().getProjects();
         System.out.println("Всего проектов " +projects.size());
         for (Project project: projects){
@@ -26,6 +27,9 @@ public class SoapTests extends TestBase{
 
     @Test
     public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException{
+        //проверяем не заблокирован ли тест багом с ID 0000001
+        skipIfNotFixed (0000001);
+
         Set<Project> projects = app.soap().getProjects();
         Issue issue = new Issue().withSummary("Test issue")
                 .withDescription("Test issue description").withProject(projects.iterator().next());
@@ -33,4 +37,5 @@ public class SoapTests extends TestBase{
         assertEquals(issue.getSummary(), created.getSummary());
 
     }
+
 }
