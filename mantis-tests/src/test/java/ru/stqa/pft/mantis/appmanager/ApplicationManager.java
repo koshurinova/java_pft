@@ -29,6 +29,7 @@ public class ApplicationManager {
     private DbHelper dbHelper;
     private ResetPasswordHelper resetPass;
     private SessionHelper sessionHelper;
+    private SoapHelper soapHelper;
 
 
     public ApplicationManager(String browser) {
@@ -121,4 +122,11 @@ public class ApplicationManager {
         return dbHelper;
     }
 
-}
+    public SoapHelper soap(){
+        if(soapHelper == null){
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
+    }
+
+    }
