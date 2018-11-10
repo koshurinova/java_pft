@@ -19,6 +19,9 @@ dependencies {
 //    compile 'org.subethamail:subethasmtp:3.1.7'
 //    compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
     compile 'org.apache.httpcomponents:fluent-hc:4.5.5'
+    compile 'com.jayway.restassured:rest-assured:2.9.0'
+
+
 //
 //
 }
