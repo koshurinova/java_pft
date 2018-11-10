@@ -26,7 +26,7 @@ public class RegistrationTests extends TestBase {
 
         //проверяем не заблокирован ли тест багом с ID 0000002
         skipIfNotFixed (0000002);
-
+        skipIfNotFixedBugify(2700);
         long now=System.currentTimeMillis();
         String user = "user"+now;
         String password = "password";

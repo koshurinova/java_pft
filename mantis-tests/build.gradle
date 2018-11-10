@@ -18,6 +18,8 @@ dependencies {
     compile 'org.subethamail:subethasmtp:3.1.7'
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
     compile 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
+    compile 'com.jayway.restassured:rest-assured:2.9.0'
+    compile 'com.google.code.gson:gson:2.8.5'
 
 
 }
